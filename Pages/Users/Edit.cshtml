@@ -1,0 +1,92 @@
+﻿@page
+@model MyDetails.Pages.Users.EditModel
+@{
+    ViewData["Title"] = "User Page";
+}
+
+
+<br>
+<h2>Edit User's Details</h2>
+
+@if (Model.errorMsg.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong> @Model.errorMsg</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+    </div>
+}
+
+
+<form method="POST">
+    <input type="hidden" name="id" value="@Model.userInfo.id" >
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Username</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="userName" value="@Model.userInfo.userName">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="name" value="@Model.userInfo.name">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="email" value="@Model.userInfo.email">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Phone Number</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="phone" value="@Model.userInfo.phone">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Address</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="address" value="@Model.userInfo.address">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Manager Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="manager_name" value="@Model.userInfo.manager_name">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Status</label>
+        <div class="col-sm-6">
+            <select name="status">
+                <option value="Active">Active</option>
+                <option value="Admin">Admin</option>
+                <option value="Closed">Closed</option>
+            </select>
+
+        </div>
+
+
+    </div>
+
+    @if (Model.successMsg.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong> @Model.successMsg</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/" role="button">Cancel</a>
+        </div>
+    </div>
+</form>

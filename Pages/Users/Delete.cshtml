@@ -1,0 +1,29 @@
+﻿@page
+@using System.Data.SqlClient;
+
+@{
+    try
+    {
+        String id = Request.Query["id"];
+        String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=mydetails;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            String sqlDelete = "DELETE FROM userlist WHERE id=@id;";
+
+            using (SqlCommand command = new SqlCommand(sqlDelete, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+
+                Console.WriteLine("SuccessFully Deleted!");
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+    }
+
+    Response.Redirect("/Users/UsersList");
+}
