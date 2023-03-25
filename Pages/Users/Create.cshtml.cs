@@ -39,12 +39,13 @@ namespace MyDetails.Pages.Users
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    String sqlInsert = "INSERT INTO userlist (user_name, name, email, phone, address, manager_name, status) " +
-                        "VALUES (@user_name, @name, @email, @phone, @address, @manager_name, @status);";
+                    String sqlInsert = "INSERT INTO userlist (user_name, pass, name, email, phone, address, manager_name, status) " +
+                        "VALUES (@user_name, @password, @name, @email, @phone, @address, @manager_name, @status);";
 
                     using (SqlCommand command = new SqlCommand(sqlInsert, connection))
                     {
                         command.Parameters.AddWithValue("@user_name", userInfo.userName.ToString());
+                        command.Parameters.AddWithValue("@password", userInfo.email.Split('@')[0] + "1234");
                         command.Parameters.AddWithValue("@name", userInfo.name);
                         command.Parameters.AddWithValue("@email", userInfo.email);
                         command.Parameters.AddWithValue("@address", userInfo.address);

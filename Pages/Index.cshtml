@@ -4,7 +4,29 @@
     ViewData["Title"] = "Home page";
 }
 
+
+@using Microsoft.AspNetCore.Identity
+@using MyDetails.Areas.Identity.Data
+
+@inject SignInManager<MyDetailsUser> SignInManager
+@inject UserManager<MyDetailsUser> UserManager
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-2 m-4">Welcome to User Portal</h1>
+
+    <div>
+        @if (!SignInManager.IsSignedIn(User))
+        {
+
+            <a class='btn btn-primary btn-lg m-10' id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+
+            <a class='btn btn-primary btn-lg m-10' id="register" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        }
+        else
+        {
+            <h3 class="display-6 m-20 link-primary ">
+                <a class="btn-lg text-primary text-lg-center" asp-area="" asp-page="/Users/UsersList">Click here to see the users' details.</a>
+            </h3>
+        }
+    </div>
+    
 </div>
